@@ -4,6 +4,13 @@ import java.util.Scanner;
 
 import ejercicio2.Rectangulo;
 
+/*
+ * ENTRADA.USUARIO: 5 --> 1 | ENTRADA.ESPERADO: 78.539 | RES. ESPERADO: 78.539
+ * ENTRADA.USUARIO: 5 --> 2 | ENTRADA.ESPERADO: 31.415 | RES. ESPERADO: 31.415
+ * ENTRADA.USUARIO: 5 --> 0 | ENTRADA.ESPERADO: "Saliendo del programa" | RES. ESPERADO: "Saliendo del programa" 
+ * ENTRADA.USUARIO: 5 --> 9 | ENTRADA.ESPERADO: "Opción no válida" | RES. ESPERADO: "Opción no válida"
+*/
+
 public class MainEj3 {
 
 	public static void main(String[] args) {

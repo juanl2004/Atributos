@@ -3,6 +3,13 @@ package ejercicio1;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/*
+ * ENTRADA.USUARIO: 5 y 10 --> 1 | ENTRADA.ESPERADO: 15 | RES. ESPERADO: 15
+ * ENTRADA.USUARIO: 10 y 0 --> 4 | ENTRADA.ESPERADO: "No es posible dividir entre 0" | RES. ESPERADO: "No es posible dividir entre 0"
+ * ENTRADA.USUARIO: 5 y 10 --> 0 | ENTRADA.ESPERADO: "Saliendo del programa" | RES. ESPERADO: "Saliendo del programa" 
+ * ENTRADA.USUARIO: 5 y 10 --> 9 | ENTRADA.ESPERADO: "Opción no válida" | RES. ESPERADO: "Opción no válida"
+*/
+
 public class MainEj1 {
 
 	public static void main(String[] args) {

@@ -2,6 +2,13 @@ package ejercicio2;
 
 import java.util.Scanner;
 
+/*
+ * ENTRADA.USUARIO: 10 y 5 --> 1 | ENTRADA.ESPERADO: 30 | RES. ESPERADO: 30
+ * ENTRADA.USUARIO: 10 y 5 --> 2 | ENTRADA.ESPERADO: 50 | RES. ESPERADO: 50
+ * ENTRADA.USUARIO: 10 y 5 --> 0 | ENTRADA.ESPERADO: "Saliendo del programa" | RES. ESPERADO: "Saliendo del programa" 
+ * ENTRADA.USUARIO: 5 y 10 --> 9 | ENTRADA.ESPERADO: "Opción no válida" | RES. ESPERADO: "Opción no válida"
+*/
+
 public class MainEj2 {
 
 	public static void main(String[] args) {
