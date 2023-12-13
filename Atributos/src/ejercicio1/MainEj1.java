@@ -22,69 +22,72 @@ public class MainEj1 {
 		num1 = pideNumero();
 		num2 = pideNumero();
 
-		//Mostramos el menú y obtenemos la opción del usuario
+		// Mostramos el menú y obtenemos la opción del usuario
 		opc = menu();
 
-		//Llamamos a la clase "ClaseEj1" con los números proporcionados (num1 y num2)
+		// Llamamos a la clase "ClaseEj1" con los números proporcionados (num1 y num2)
 		ClaseEj1 calculadora = new ClaseEj1(num1, num2);
 
-        // Realizar acciones según la opción seleccionada
+		// Realizar acciones según la opción seleccionada
 		switch (opc) {
 		case 1:
-			//Llamamos a la función suma y mostramos el resultado.
+			// Llamamos a la función suma y mostramos el resultado.
 			res = calculadora.suma();
 			System.out.println("Resultado de la suma: " + res);
-			//Cierre
+			// Cierre
 			break;
 		case 2:
-			//Llamamos a la función resta y mostramos su resultado
+			// Llamamos a la función resta y mostramos su resultado
 			res = calculadora.resta();
 			System.out.println("Resultado de la resta: " + res);
-			//Cierre
+			// Cierre
 			break;
 		case 3:
-			//Llamamos a la función multiplicación y mostramos su solución
+			// Llamamos a la función multiplicación y mostramos su solución
 			res = calculadora.multiplicacion();
 			System.out.println("Resultado de la multiplicación: " + res);
-			//Cierre
+			// Cierre
 			break;
 		case 4:
-			//Llamamos a la función división y mostramos su resultado
+			// Llamamos a la función división y mostramos su resultado
 			res = calculadora.division();
 			System.out.println("Resultado de la división: " + res);
-			//Cierre
+			// Cierre
 			break;
 		case 5:
-			//El resultado es igual al maximo de entre los dos números
+			// El resultado es igual al maximo de entre los dos números
 			res = Math.max(num1, num2);
 			System.out.println("Máximo: " + res);
-			//Cierre
+			// Cierre
 			break;
 		case 6:
-			//El resultado es igual al minimo de entre los dos números
+			// El resultado es igual al minimo de entre los dos números
 			res = Math.min(num1, num2);
 			System.out.println("Mínimo: " + res);
-			//Cierre
+			// Cierre
 			break;
 		case 0:
-			//En caso de que introduzcamos 0 el programa terminara mostrandonos "Saliendo del programa..."
+			// En caso de que introduzcamos 0 el programa terminara mostrandonos "Saliendo
+			// del programa..."
 			System.out.println("Saliendo del programa...");
-			//Cierre
+			// Cierre
 			break;
 		default:
-			//Si se introduce otro número de los que no aparecen en el menú se imprime "Opción no válida"
+			// Si se introduce otro número de los que no aparecen en el menú se imprime
+			// "Opción no válida"
 			System.out.println("Opción no válida");
 		}
 	}
-	//Método para mostrar el menú y obetener la opción del usuario
+
+	// Método para mostrar el menú y obetener la opción del usuario
 	public static int menu() {
-		//Guardamos la opción introducida por el usuario
+		// Guardamos la opción introducida por el usuario
 		int opc;
 
-		//Creamos el Scanner para mostrar una solución
+		// Creamos el Scanner para mostrar una solución
 		Scanner sc = new Scanner(System.in);
-		
-		//Creamos el menú
+
+		// Creamos el menú
 		System.out.println("Elige una de las funciones que se muestran a continuación -->");
 		System.out.println("[1] Suma");
 		System.out.println("[2] Resta");
@@ -94,41 +97,57 @@ public class MainEj1 {
 		System.out.println("[6] Mínimo");
 		System.out.println("[0] Salir");
 
-		//Le pedimos al usuario que introduzca la opción
-		System.out.println("Introduce el número de la opción que desees realizar ");
-		opc = sc.nextInt();
+		// Bucle para asegurarse de que se introduce una opción válida
+		do {
+			System.out.print("Elija una opción: ");
+			try {
+				// Intenta leer un entero del usuario
+				opc = sc.nextInt();
+				// Verifica si la opción está fuera del rango válido
+				if (opc < 0 || opc > 2) {
+					System.out.println("Opción no válida. Inténtelo de nuevo.");
+				}
+			} catch (InputMismatchException e) {
+				// Captura la excepción si se introduce algo que no es un número entero
+				System.out.println("Por favor, introduzca un número entero. Inténtelo de nuevo.");
+				sc.nextLine(); // Limpia el búfer del Scanner
+				opc = -1; // Establece una opción inválida para repetir el bucle
+			}
+			// Repite el bucle si la opción no es válida
+		} while (opc < 0 || opc > 2);
 
-		//Se devuelve el valor de opc al lugar donde se llame
+		// Devuelve la opción seleccionada por el usuario
 		return opc;
 	}
-	//Método para solicitar y obtener un número del usuario
+
+	// Método para solicitar y obtener un número del usuario
 	public static double pideNumero() {
 		// Variable para almacenar el número introducido por el usuario
 		double numero = 0;
-		//Iniciamos la variable seguir en true, para controlar el bucle de entrada
+		// Iniciamos la variable seguir en true, para controlar el bucle de entrada
 		boolean seguir = true;
 
-		//Creamos Scanner
+		// Creamos Scanner
 		Scanner sc = new Scanner(System.in);
 
 		do {
 			try {
-				//Pedimos un número
+				// Pedimos un número
 				System.out.println("Escribe un número --> ");
 				numero = sc.nextDouble();
 				seguir = false;
 			} catch (InputMismatchException e) {
-				//Se muestra si el valor introducido es erroneo, en este caso "decimal"
+				// Se muestra si el valor introducido es erroneo, en este caso "decimal"
 				System.out.println("El numero introducido es decimal");
 
 			} finally {
-                // Limpiar el buffer del scanner para evitar bucles infinitos
+				// Limpiar el buffer del scanner para evitar bucles infinitos
 				sc.nextLine();
 			}
-		//Comprobamos el valor del seguir	
+			// Comprobamos el valor del seguir
 		} while (seguir);
 
-		//Se devuelve el valor de opc al lugar donde se llame
+		// Se devuelve el valor de opc al lugar donde se llame
 		return numero;
 	}
 }

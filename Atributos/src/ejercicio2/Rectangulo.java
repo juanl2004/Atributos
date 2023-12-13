@@ -6,12 +6,11 @@ public class Rectangulo {
 	double ancho;
 	double alto;
 
-	//Clase que recibe dos parametros para inicializar (ancho y alto)
+	//Constructor que recibe dos parametros para inicializar (ancho y alto)
 	public Rectangulo(double ancho, double alto) {
-		// Inicialización de ancho con el valor pasado como parámetro
+		// Inicialización de ancho con el valor 0
 		this.ancho = ancho;
-		// Inicialización de alto con el valor pasado como parámetro
-		this.alto = alto;
+		// Inicialización de alto con el valor 0
 	}
 
 	//Metodo para resolver el perimetro del rectangulo

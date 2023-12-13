@@ -1,5 +1,6 @@
 package ejercicio3;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import ejercicio2.Rectangulo;
@@ -30,62 +31,102 @@ public class MainEj3 {
 		// Realizar acciones según la opción seleccionada
 		switch (opcion) {
 		case 1:
-			//En el caso 1 imprimimos circunferencia, llamando a la función circunferencia
+			// En el caso 1 imprimimos circunferencia, llamando a la función circunferencia
 			System.out.println("Circunferencia --> " + circulo.circunferencia());
-			//Cierre
+			// Cierre
 			break;
 		case 2:
-			//En el caso 2 imprimimos el area llamando a la función area
+			// En el caso 2 imprimimos el area llamando a la función area
 			System.out.println("Área --> " + circulo.area());
-			//Cierre
+			// Cierre
 			break;
 		case 0:
-			//En el caso 0 imprimimos "Saliendo del programa"
+			// En el caso 0 imprimimos "Saliendo del programa"
 			System.out.println("Saliendo del programa...");
-			//Cierre
+			// Cierre
 			break;
 		default:
-			//Si el caso es diferente al resto se imprimira "Opción no valida" 
+			// Si el caso es diferente al resto se imprimira "Opción no valida"
 			System.out.println("Opción no válida, inténtalo de nuevo");
 		}
-		//Cierre de Scanner
+		// Cierre de Scanner
 		sc.close();
 	}
 
-	//Creamos una clase para imprimir el menu
+	// Creamos un método para imprimir el menu
 	public static int menu() {
 
-		//Declaramos la opción que introducirá el menu por teclado
+		// Declaramos la opción que introducirá el menu por teclado
 		int opcion;
 
-		//Creamos el Scanner
+		// Creamos el Scanner
 		Scanner sc = new Scanner(System.in);
 
-		//Mostramos el menú y pedimos la opción
+		// Mostramos el menú y pedimos la opción
 		System.out.println("Elige una de las opciones que se muestran a continuación -->");
 		System.out.println("[1] Circunferencia");
 		System.out.println("[2] Área");
 		System.out.println("[0] Salir");
-		opcion = sc.nextInt();
 
-		//Devolvemos el valor introducido por el usuario
+		// Bucle para asegurarse de que se introduce una opción válida
+		do {
+			System.out.print("Elija una opción: ");
+			try {
+				// Intenta leer un entero del usuario
+				opcion = sc.nextInt();
+				// Verifica si la opción está fuera del rango válido
+				if (opcion < 0 || opcion > 2) {
+					System.out.println("Opción no válida. Inténtelo de nuevo.");
+				}
+			} catch (InputMismatchException e) {
+				// Captura la excepción si se introduce algo que no es un número entero
+				System.out.println("Por favor, introduzca un número entero. Inténtelo de nuevo.");
+				// Limpiar Scanner
+				sc.nextLine();
+				// Establece una opción no valida para repetir el bucle
+				opcion = -1;
+			}
+			// Repite el bucle si la opción no es válida
+		} while (opcion < 0 || opcion > 2);
+
+		// Devuelve la opción seleccionada por el usuario
 		return opcion;
+
 	}
 
-	//Creamos una clase para pedir el radio del circulo
+	// Creamos un método para pedir el radio del circulo
 	public static double pideRadio() {
 
-		//Creamos la variable donde se guardara el valor introducido por el usuario
+		// Creamos la variable donde se guardara el valor introducido por el usuario
 		double radio;
 
-		//Creamos el Scanner 
+		// Creamos el Scanner
 		Scanner sc = new Scanner(System.in);
 
-		//Le pedimos al usuario que intruzca el radio y leemos el valor introducido
-		System.out.println("Introduce le radio -->");
-		radio = sc.nextDouble();
+		// Bucle para asegurarse de que se introduce un radio válido
+		do {
+			System.out.print("Introduzca el radio del círculo: ");
+			try {
+				// Intenta leer un número decimal del usuario
+				radio = sc.nextDouble();
+				// Verifica si el radio es menor o igual a cero
+				if (radio <= 0) {
+					System.out.println("El radio debe ser mayor que cero. Inténtelo de nuevo.");
+					// Valor para indicar que el número es nulo
+					radio = Double.NaN;
+				}
+			} catch (InputMismatchException e) {
+				// Captura la excepción si se introduce algo que no es un número
+				System.out.println("Por favor, introduzca un número válido. Inténtelo de nuevo.");
+				// Limpiar Scanner
+				sc.nextLine();
+				// Valor para indicar que el número es nulo
+				radio = Double.NaN;
+			}
+			// Repite el bucle si el número no es válido
+		} while (Double.isNaN(radio));
 
-		//Devolvemos el valor introducido por el usuario
+		// Devuelve el radio introducido por el usuario
 		return radio;
 
 	}

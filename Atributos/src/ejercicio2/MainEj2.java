@@ -1,5 +1,6 @@
 package ejercicio2;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /*
@@ -59,11 +60,13 @@ public class MainEj2 {
 		sc.close();
 	}
 
-	// Creamos una clase para imprimir el menu y que nos devuelva la opción
+	// Creamos un método para imprimir el menu y que nos devuelva la opción
 	// seleccionada
 	public static int menu() {
 		// Creamos un Scanner, porque vamos a pedir un número
 		Scanner sc = new Scanner(System.in);
+
+		int opcion;
 
 		// Mostramos el menu y pedimos la opción
 		System.out.println("Seleccione una opción --> ");
@@ -71,27 +74,93 @@ public class MainEj2 {
 		System.out.println("[2] Área");
 		System.out.println("[0] Salir");
 
-		// Devolvemos la opción
-		return sc.nextInt();
+		// Bucle para asegurarse de que se introduce una opción válida
+		do {
+			System.out.print("Elija una opción: ");
+			try {
+				// Intenta leer un entero del usuario
+				opcion = sc.nextInt();
+				// Verifica si la opción está fuera del rango válido
+				if (opcion < 0 || opcion > 2) {
+					System.out.println("Opción no válida. Inténtelo de nuevo.");
+				}
+			} catch (InputMismatchException e) {
+				// Captura la excepción si se introduce algo que no es un número entero
+				System.out.println("Por favor, introduzca un número entero. Inténtelo de nuevo.");
+				sc.nextLine(); // Limpia el búfer del Scanner
+				opcion = -1; // Establece una opción inválida para repetir el bucle
+			}
+			// Repite el bucle si la opción no es válida
+		} while (opcion < 0 || opcion > 2);
+
+		// Devuelve la opción seleccionada por el usuario
+		return opcion;
 	}
 
-	// Creamos una clase para pedir el ancho del rectangulo
+	// Creamos un método para pedir el ancho del rectangulo
 	public static double pideAncho() {
 		// Creamos otro Scanner
 		Scanner sc = new Scanner(System.in);
 
-		// Pedimos al usuario el ancho del rectangulo y devolvemos el valor introducido
-		System.out.print("Introduce el ancho del rectángulo --> ");
-		return sc.nextDouble();
+		double ancho;
+		
+		 // Bucle para asegurarse de que se introduce un ancho válido
+        do {
+            System.out.print("Introduzca el ancho del rectángulo --> ");
+            try {
+                // Intenta leer un número decimal del usuario
+                ancho = sc.nextDouble();
+                // Verifica si el ancho es menor o igual a cero
+                if (ancho <= 0) {
+                    System.out.println("El ancho debe ser mayor que cero. Inténtelo de nuevo.");
+                    // Valor para indicar que el número es nulo
+                    ancho = Double.NaN;
+                }
+            } catch (InputMismatchException e) {
+                // Captura la excepción si se introduce algo que no es un número
+                System.out.println("Por favor, introduzca un número válido. Inténtelo de nuevo.");
+                // Limpiar Scanner
+                sc.nextLine(); 
+             // Valor para indicar que el número es nulo
+                ancho = Double.NaN; 
+            }
+        // Repite el bucle si el número no es válido
+        } while (Double.isNaN(ancho)); 
+
+        // Devuelve el ancho introducido por el usuario
+        return ancho;
 	}
 
-	// Creamos una clase para pedir la altura del rectangulo
+	// Creamos un método para pedir la altura del rectangulo
 	public static double pideAlto() {
 		// Creamos otro Scanner
 		Scanner sc = new Scanner(System.in);
 
-		// Pedimos al usuario la altura del rectangulo devolvemos el valor introducido
-		System.out.print("Introduce el alto del rectángulo --> ");
-		return sc.nextDouble();
+		double alto;
+		// Bucle para asegurarse de que se introduce un alto válido
+        do {
+            System.out.print("Introduzca el alto del rectángulo --> ");
+            try {
+                // Intenta leer un número decimal del usuario
+                alto = sc.nextDouble();
+                // Verifica si el alto es menor o igual a cero
+                if (alto <= 0) {
+                    System.out.println("El alto debe ser mayor que cero. Inténtelo de nuevo.");
+                    // Valor para indicar que el número es nulo
+                    alto = Double.NaN;
+                }
+            } catch (InputMismatchException e) {
+                // Captura la excepción si se introduce algo que no es un número
+                System.out.println("Por favor, introduzca un número válido. Inténtelo de nuevo.");
+                // Limpiar Scanner
+                sc.nextLine(); 
+                // Valor para indicar que el número es nulo
+                alto = Double.NaN;
+            }
+        // Repite el bucle si el número no es válido
+        } while (Double.isNaN(alto)); 
+
+        // Devuelve el alto introducido por el usuario
+        return alto;
 	}
 }

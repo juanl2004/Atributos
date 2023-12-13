@@ -1,5 +1,6 @@
 package ejercicio4;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import ejercicio3.Circulo;
@@ -57,7 +58,7 @@ public class MainEj4 {
 		sc.close();
 	}
 
-	// Creamos una clase para imprimir el menú
+	// Creamos un método para imprimir el menú
 	public static int menu() {
 
 		// Declaramos la variable opción, que guardaró el valor introducido por el
@@ -72,14 +73,34 @@ public class MainEj4 {
 		System.out.println("[1] Volumen");
 		System.out.println("[2] Area");
 		System.out.println("[01 Salir");
-		opcion = sc.nextInt();
 
-		// Devolvemos la opción introducida por el usuario
+		// Bucle para asegurarse de que se introduce una opción válida
+		do {
+			System.out.print("Elija una opción: ");
+			try {
+				// Intenta leer un entero del usuario
+				opcion = sc.nextInt();
+				// Verifica si la opción está fuera del rango válido
+				if (opcion < 0 || opcion > 2) {
+					System.out.println("Opción no válida. Inténtelo de nuevo.");
+				}
+			} catch (InputMismatchException e) {
+				// Captura la excepción si se introduce algo que no es un número entero
+				System.out.println("Por favor, introduzca un número entero. Inténtelo de nuevo.");
+				// Limpiar Scanner
+				sc.nextLine();
+				// Establece una opción no valida para repetir el bucle
+				opcion = -1;
+			}
+			// Repite el bucle si la opción no es válida
+		} while (opcion < 0 || opcion > 2);
+
+		// Devuelve la opción seleccionada por el usuario
 		return opcion;
 
 	}
 
-	// Creamos una clase para pedir el radio del circulo
+	// Creamos un método para pedir el radio del circulo
 	public static double pideRadioBase() {
 
 		// Declaramos la variable donde se guarda el valor introducido por el usuario
@@ -88,16 +109,35 @@ public class MainEj4 {
 		// Creamos el Scanner
 		Scanner sc = new Scanner(System.in);
 
-		// Le pedimos al usuario que introduzca el radio de la base y leemos el valor
-		// introducido
-		System.out.println("Introduzca el radio de la base --> ");
-		radio = sc.nextDouble();
+		// Bucle para asegurarse de que se introduce un radio válido
+		do {
+			System.out.print("Introduzca el radio de la base del cilindro: ");
+			try {
+				// Intenta leer un número decimal del usuario
+				radio = sc.nextDouble();
+				// Verifica si el radio es menor o igual a cero
+				if (radio <= 0) {
+					System.out.println("El radio de la base debe ser mayor que cero. Inténtelo de nuevo.");
+					// Valor para indicar que el número es nulo
+					radio = Double.NaN;
+				}
+			} catch (InputMismatchException e) {
+				// Captura la excepción si se introduce algo que no es un número
+				System.out.println("Por favor, introduzca un número válido. Inténtelo de nuevo.");
+				// Limpiar Scanner
+				sc.nextLine();
+				// Valor para indicar que el número es nulo
+				radio = Double.NaN;
+			}
+			// Repite el bucle si el número no es válido
+		} while (Double.isNaN(radio));
 
-		// Devolvemos el valor introducido por el usuario
+		// Devuelve el radio introducido por el usuario
 		return radio;
+
 	}
 
-	// Creamos otra clase para pedir la altura del cilindro
+	// Creamos un método para pedir la altura del cilindro
 	public static double altura() {
 
 		// Declaramos la variable donde se guarda el valor de la altura introducida por
@@ -107,11 +147,31 @@ public class MainEj4 {
 		// Creamos el Scanner
 		Scanner sc = new Scanner(System.in);
 
-		// Le pedimos al usuario que introduzca la altura y leemos el valor introducido
-		System.out.println("Introduce la altura del cilindro --> ");
-		altura = sc.nextDouble();
+		 // Bucle para asegurarse de que se introduce una altura válida
+        do {
+            System.out.print("Introduzca la altura del cilindro: ");
+            try {
+                // Intenta leer un número decimal del usuario
+                altura = sc.nextDouble();
+                // Verifica si la altura es menor o igual a cero
+                if (altura <= 0) {
+                    System.out.println("La altura del cilindro debe ser mayor que cero. Inténtelo de nuevo.");
+                    // Valor para indicar que el número es nulo
+                    altura = Double.NaN;
+                }
+            } catch (InputMismatchException e) {
+                // Captura la excepción si se introduce algo que no es un número
+                System.out.println("Por favor, introduzca un número válido. Inténtelo de nuevo.");
+                // Limpiar Scanner
+                sc.nextLine();
+                // Valor para indicar que el número es nulo
+                altura = Double.NaN;
+            }
+        // Repite el bucle si el número no es válido
+        } while (Double.isNaN(altura));
 
-		// Devolvemos el valor introducido por el usuario
-		return altura;
+        // Devuelve la altura introducida por el usuario
+        return altura;
+		
 	}
 }

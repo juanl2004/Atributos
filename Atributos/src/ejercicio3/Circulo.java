@@ -5,9 +5,9 @@ public class Circulo {
 	// Creamos el atributo radio de la clase Circulo
 	double radio;
 
-	// Creamos la clase Circulo para inicializar el radio
+	// Creamos el constructor Circulo para inicializar el radio
 	public Circulo(double radio) {
-		// Inicialización del radio con el valor pasado como parametro
+		// Inicialización del radio con el valor 0
 		this.radio = radio;
 	}
 
